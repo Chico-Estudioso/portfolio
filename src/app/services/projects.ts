@@ -37,4 +37,9 @@ export class ProjectsService {
   getProjects(): Project[] {
     return this.projectsList;
   }
+
+  // Nuevo: buscar proyecto por ID (para la ruta dinámica /projects/:id)
+  getProjectById(id: number): Project | undefined {
+    return this.projectsList.find((p) => p.id === id);
+  }
 }

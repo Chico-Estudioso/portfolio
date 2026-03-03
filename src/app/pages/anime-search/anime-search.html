@@ -12,6 +12,13 @@
     <button (click)="onSearch()" class="search-btn" [disabled]="isLoading">Buscar</button>
   </div>
 
+  <!-- Link a favoritos con contador -->
+  @if (favoritesCount > 0) {
+    <div class="favorites-link">
+      <a routerLink="/favorites">Ver mis favoritos ({{ favoritesCount }})</a>
+    </div>
+  }
+
   <!-- Feedback Visual: Cargando -->
   @if (isLoading) {
     <div class="feedback loading">
@@ -23,34 +30,27 @@
   <!-- Feedback Visual: Error -->
   @if (errorMessage) {
     <div class="feedback error">
-      <p>❌ {{ errorMessage }}</p>
+      <p>{{ errorMessage }}</p>
     </div>
   }
 
   <!-- Feedback Visual: Sin Resultados -->
   @if (!isLoading && hasSearched && animeList.length === 0 && !errorMessage) {
     <div class="feedback empty">
-      <p>👻 No se encontraron resultados para "{{ searchQuery }}".</p>
+      <p>No se encontraron resultados para "{{ searchQuery }}".</p>
     </div>
   }
 
-  <!-- Listado de Resultados -->
+  <!-- Listado usando COMPONENTE HIJO AnimeCard -->
   @if (!isLoading && animeList.length > 0) {
     <div class="anime-grid">
       @for (anime of animeList; track anime.mal_id) {
-        <div class="anime-card">
-          <div class="img-wrapper">
-            <img [src]="anime.images.jpg.image_url" [alt]="anime.title" class="anime-img" />
-            <span class="score">⭐ {{ anime.score || 'N/A' }}</span>
-          </div>
-          <div class="anime-info">
-            <h3 class="title" [title]="anime.title">{{ anime.title }}</h3>
-            <p class="episodes">Episodios: {{ anime.episodes || '?' }}</p>
-            <p class="status" [class.airing]="anime.status === 'Currently Airing'">
-              {{ anime.status }}
-            </p>
-          </div>
-        </div>
+        <!-- Padre pasa datos con @Input y escucha eventos con @Output -->
+        <app-anime-card
+          [anime]="anime"
+          [isFavorite]="checkFavorite(anime.mal_id)"
+          (toggleFavorite)="onToggleFavorite($event)"
+        />
       }
     </div>
   }

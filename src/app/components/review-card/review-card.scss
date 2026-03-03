@@ -1,0 +1,68 @@
+.review-card {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  border-left: 4px solid #0f3460;
+  transition: border-color 0.3s;
+
+  &:hover {
+    border-color: #e94560;
+  }
+
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .author-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .author {
+    color: #ccd6f6;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .date {
+    color: #4a5568;
+    font-size: 0.8rem;
+  }
+
+  .delete-btn {
+    background: transparent;
+    border: 1px solid #4a5568;
+    color: #4a5568;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+
+    &:hover {
+      border-color: #e94560;
+      color: #e94560;
+    }
+  }
+
+  .rating {
+    color: #fbbf24;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+
+  .comment {
+    color: #8892b0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+}

@@ -1,12 +1,12 @@
 <section class="about">
-  <h1 class="section-title">Sobre Mí ( Para Rafa )</h1>
+  <h1 class="section-title">Sobre Mi ( Para Rafa )</h1>
 
   <div class="about-grid">
     <div class="card">
-      <h2>Formación</h2>
+      <h2>Formacion</h2>
       <p>
         Titulado en <strong>DAM</strong> (Desarrollo de Aplicaciones Multiplataforma) y
-        <strong>DAW</strong> (Desarrollo de Aplicaciones Web), con base sólida en programación
+        <strong>DAW</strong> (Desarrollo de Aplicaciones Web), con base solida en programacion
         orientada a objetos y desarrollo full-stack
       </p>
     </div>
@@ -15,15 +15,37 @@
       <h2>Experiencia</h2>
       <p>
         Desarrollo de proyectos personales y colaborativos: APIs en Java, aplicaciones Angular, bots
-        de Discord y configuración de infraestructura cloud en AWS (EC2, RDS)
+        de Discord y configuracion de infraestructura cloud en AWS (EC2, RDS)
       </p>
     </div>
 
-    <div class="card">
-      <h2>Habilidades Técnicas</h2>
-      <div class="skills-list">
-        @for (skill of skills; track skill) {
-          <span class="skill-tag">{{ skill }}</span>
+    <!-- CARD DE SKILLS DINAMICAS con FormArray -->
+    <div class="card card-skills">
+      <h2>Habilidades Tecnicas</h2>
+
+      @if (saved) {
+        <div class="success-msg">Skills guardadas correctamente</div>
+      }
+
+      <div class="skills-form-container" [formGroup]="skillsForm">
+        <div class="skills-list-dynamic">
+          @for (control of skillsArray.controls; track control; let i = $index) {
+            <!-- Componente hijo: recibe FormControl por @Input, emite remove por @Output -->
+            <app-skill-item
+              [skillControl]="getSkillControl(i)"
+              [index]="i"
+              (remove)="onRemoveSkill($event)"
+            />
+          }
+        </div>
+
+        <div class="skills-actions">
+          <button type="button" class="btn-add" (click)="addSkill()">+ Anadir Skill</button>
+          <button type="button" class="btn-save" (click)="onSaveSkills()">Guardar Skills</button>
+        </div>
+
+        @if (skillsArray.length === 0) {
+          <p class="empty-skills">No tienes skills. Anade alguna!</p>
         }
       </div>
     </div>
@@ -31,7 +53,7 @@
     <div class="card">
       <h2>Otros Intereses</h2>
       <p>
-        Modding de Minecraft y Terraria, ciberseguridad ética, inteligencia artificial y pixel art
+        Modding de Minecraft y Terraria, ciberseguridad etica, inteligencia artificial y pixel art
       </p>
     </div>
   </div>

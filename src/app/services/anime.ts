@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface AnimeResult {
-  data: any[];
-}
+import { AnimeResult } from '../interfaces/anime.interface';
 
 @Injectable({
   providedIn: 'root',

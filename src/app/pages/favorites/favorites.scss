@@ -1,0 +1,52 @@
+.favorites {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #ccd6f6;
+    margin-bottom: 2rem;
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #e94560;
+      margin: 0.5rem auto 0;
+    }
+  }
+
+  .counter {
+    text-align: center;
+    color: #8892b0;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    background: #16213e;
+    border-radius: 12px;
+    color: #8892b0;
+    font-size: 1.2rem;
+    line-height: 2;
+
+    a {
+      color: #e94560;
+      text-decoration: none;
+      font-weight: bold;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+}

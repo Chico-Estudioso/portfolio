@@ -1,0 +1,60 @@
+<section class="project-detail">
+  @if (project) {
+    <!-- Cabecera del proyecto -->
+    <div class="project-header">
+      <a routerLink="/projects" class="back-link">← Volver a proyectos</a>
+      <img [src]="project.imageUrl" [alt]="project.title" class="project-img" />
+      <div class="project-info">
+        <h1>{{ project.title }}</h1>
+        <p class="description">{{ project.description }}</p>
+        <div class="meta">
+          <span class="avg-rating">Valoracion media: {{ averageRating || 'Sin valorar' }}
+            @if (averageRating > 0) {
+              <span class="stars-small">{{ '★'.repeat(averageRating) }}</span>
+            }
+          </span>
+          <span class="review-count">{{ reviews.length }} resena(s)</span>
+        </div>
+        <a [href]="project.repoUrl" target="_blank" rel="noopener" class="btn-repo">Ver Repositorio</a>
+      </div>
+    </div>
+
+    <!-- Feedback de resena anadida -->
+    @if (reviewAdded) {
+      <div class="success-msg">Resena anadida correctamente</div>
+    }
+
+    <div class="reviews-layout">
+      <!-- Columna izquierda: HIJO ReviewForm -->
+      <div class="form-column">
+        <app-review-form (newReview)="onNewReview($event)" />
+      </div>
+
+      <!-- Columna derecha: listado de HIJOS ReviewCard -->
+      <div class="reviews-column">
+        <h2>Resenas ({{ reviews.length }})</h2>
+
+        @if (reviews.length === 0) {
+          <p class="empty">Aun no hay resenas. Se el primero en opinar!</p>
+        } @else {
+          <div class="reviews-list">
+            @for (review of reviews; track review.id; let i = $index) {
+              <!-- Hijo ReviewCard: recibe datos por @Input, emite por @Output -->
+              <app-review-card
+                [review]="review"
+                [index]="i"
+                (deleteReview)="onDeleteReview($event)"
+              />
+            }
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <div class="not-found">
+      <h2>Proyecto no encontrado</h2>
+      <p>El proyecto que buscas no existe.</p>
+      <a routerLink="/projects" class="back-link">← Volver a proyectos</a>
+    </div>
+  }
+</section>

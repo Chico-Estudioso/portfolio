@@ -1,0 +1,28 @@
+<div class="skill-item">
+  <span class="skill-number">#{{ index + 1 }}</span>
+  <input
+    type="text"
+    [formControl]="skillControl"
+    (input)="onInput()"
+    placeholder="Escribe una skill..."
+    class="skill-input"
+    [class.invalid]="skillControl.invalid && skillControl.touched"
+  />
+  <span class="char-count">{{ charCount }}</span>
+  <button type="button" class="remove-btn" (click)="onRemove()" title="Eliminar skill">✕</button>
+
+  <!-- Errores de validación -->
+  @if (skillControl.invalid && skillControl.touched) {
+    <div class="errors">
+      @if (skillControl.errors?.['required']) {
+        <span>La skill es obligatoria</span>
+      }
+      @if (skillControl.errors?.['minlength']) {
+        <span>Mínimo 2 caracteres</span>
+      }
+      @if (skillControl.errors?.['whitespace']) {
+        <span>No puede ser solo espacios</span>
+      }
+    </div>
+  }
+</div>

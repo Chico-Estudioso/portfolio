@@ -1,0 +1,11 @@
+<div class="review-card">
+  <div class="review-header">
+    <div class="author-info">
+      <span class="author">{{ review.author }}</span>
+      <span class="date">{{ formattedDate }}</span>
+    </div>
+    <button class="delete-btn" (click)="onDelete()" title="Eliminar reseña">✕</button>
+  </div>
+  <div class="rating">{{ stars }}</div>
+  <p class="comment">{{ review.comment }}</p>
+</div>

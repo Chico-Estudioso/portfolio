@@ -1,0 +1,22 @@
+<section class="favorites">
+  <h1 class="section-title">Mis Animes Favoritos</h1>
+
+  @if (favoriteAnimes.length === 0) {
+    <div class="empty-state">
+      <p>😿 No tienes animes en tu lista de favoritos.</p>
+      <p>Ve al <a routerLink="/anime">Buscador de Anime</a> y añade algunos.</p>
+    </div>
+  } @else {
+    <p class="counter">{{ favoriteAnimes.length }} anime(s) en tu lista</p>
+    <div class="favorites-grid">
+      @for (anime of favoriteAnimes; track anime.mal_id) {
+        <!-- Componente hijo: recibe datos por @Input y emite eventos por @Output -->
+        <app-anime-card
+          [anime]="anime"
+          [isFavorite]="true"
+          (toggleFavorite)="onRemoveFavorite($event)"
+        />
+      }
+    </div>
+  }
+</section>

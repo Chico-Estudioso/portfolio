@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Project, ProjectsService } from '../../services/projects';
 
 @Component({
   selector: 'app-projects',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })

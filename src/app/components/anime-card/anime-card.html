@@ -1,0 +1,21 @@
+<div class="anime-card" [class.is-favorite]="isFavorite">
+  <div class="img-wrapper">
+    <img [src]="anime.images.jpg.image_url" [alt]="anime.title" class="anime-img" />
+    <span class="score">⭐ {{ anime.score || 'N/A' }}</span>
+    <button
+      class="fav-btn"
+      [class.animating]="isAnimating"
+      (click)="onToggleFavorite()"
+      [title]="isFavorite ? 'Quitar de favoritos' : 'Añadir a favoritos'"
+    >
+      {{ favoriteIcon }}
+    </button>
+  </div>
+  <div class="anime-info">
+    <h3 class="title" [title]="anime.title">{{ anime.title }}</h3>
+    <p class="episodes">Episodios: {{ anime.episodes || '?' }}</p>
+    <p class="status" [class.airing]="anime.status === 'Currently Airing'">
+      {{ anime.status }}
+    </p>
+  </div>
+</div>

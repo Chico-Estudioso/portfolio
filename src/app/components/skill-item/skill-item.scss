@@ -1,0 +1,72 @@
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+
+  .skill-number {
+    color: #e94560;
+    font-weight: bold;
+    font-size: 0.9rem;
+    min-width: 25px;
+  }
+
+  .skill-input {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    background: #16213e;
+    border: 2px solid #0f3460;
+    border-radius: 6px;
+    color: #ccd6f6;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s;
+    min-width: 150px;
+
+    &:focus {
+      border-color: #e94560;
+    }
+
+    &.invalid {
+      border-color: #ff4444;
+    }
+
+    &::placeholder {
+      color: #4a5568;
+    }
+  }
+
+  .char-count {
+    color: #4a5568;
+    font-size: 0.8rem;
+    min-width: 20px;
+    text-align: right;
+  }
+
+  .remove-btn {
+    background: transparent;
+    border: 2px solid #e94560;
+    color: #e94560;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+
+    &:hover {
+      background: #e94560;
+      color: white;
+    }
+  }
+
+  .errors {
+    width: 100%;
+    padding-left: 33px;
+    color: #ff4444;
+    font-size: 0.8rem;
+  }
+}

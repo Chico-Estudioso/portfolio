@@ -62,6 +62,12 @@
       }
     }
 
+    .card-actions {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
     .btn {
       display: inline-block;
       background: #e94560;
@@ -70,10 +76,21 @@
       border-radius: 4px;
       text-decoration: none;
       font-size: 0.9rem;
-      transition: background 0.3s;
+      transition: all 0.3s;
 
       &:hover {
         background: #c73652;
+      }
+
+      &-reviews {
+        background: transparent;
+        border: 2px solid #e94560;
+        color: #e94560;
+
+        &:hover {
+          background: #e94560;
+          color: white;
+        }
       }
     }
   }
