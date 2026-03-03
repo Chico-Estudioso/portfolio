@@ -1,0 +1,57 @@
+<section class="anime-tracker">
+  <h1 class="section-title">AnimeWatch Tracker</h1>
+
+  <div class="search-container">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="onSearch()"
+      placeholder="Ej: Naruto, Bleach, One Piece..."
+      class="search-input"
+    />
+    <button (click)="onSearch()" class="search-btn" [disabled]="isLoading">Buscar</button>
+  </div>
+
+  <!-- Feedback Visual: Cargando -->
+  @if (isLoading) {
+    <div class="feedback loading">
+      <div class="spinner"></div>
+      <p>Buscando animes...</p>
+    </div>
+  }
+
+  <!-- Feedback Visual: Error -->
+  @if (errorMessage) {
+    <div class="feedback error">
+      <p>❌ {{ errorMessage }}</p>
+    </div>
+  }
+
+  <!-- Feedback Visual: Sin Resultados -->
+  @if (!isLoading && hasSearched && animeList.length === 0 && !errorMessage) {
+    <div class="feedback empty">
+      <p>👻 No se encontraron resultados para "{{ searchQuery }}".</p>
+    </div>
+  }
+
+  <!-- Listado de Resultados -->
+  @if (!isLoading && animeList.length > 0) {
+    <div class="anime-grid">
+      @for (anime of animeList; track anime.mal_id) {
+        <div class="anime-card">
+          <div class="img-wrapper">
+            <img [src]="anime.images.jpg.image_url" [alt]="anime.title" class="anime-img" />
+            <span class="score">⭐ {{ anime.score || 'N/A' }}</span>
+          </div>
+          <div class="anime-info">
+            <h3 class="title" [title]="anime.title">{{ anime.title }}</h3>
+            <p class="episodes">Episodios: {{ anime.episodes || '?' }}</p>
+            <p class="status" [class.airing]="anime.status === 'Currently Airing'">
+              {{ anime.status }}
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</section>

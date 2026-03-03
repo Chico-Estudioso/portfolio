@@ -1,0 +1,21 @@
+.footer {
+  background-color: #1a1a2e;
+  color: #a8b2d8;
+  text-align: center;
+  padding: 2rem;
+
+  .social-links {
+    margin-top: 0.6rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+
+    a {
+      color: #e94560;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
